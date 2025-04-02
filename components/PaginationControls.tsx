@@ -8,7 +8,7 @@ import {
   PaginationPrevious 
 } from "@/components/ui/pagination";
 
-interface PaginationControlsProps {
+type PaginationControlsProps = {
   nextPage: number | null;
   prevPage: number | null;
   currentPage: number;

@@ -1,11 +1,11 @@
 import { PokeCard } from "./pokeCard";
 
-interface Pokemon {
+type Pokemon = {
   name: string;
   url: string;
 }
 
-interface PokemonListProps {
+type PokemonListProps = {
   pokemons: Pokemon[];
 }
 

@@ -3,7 +3,7 @@ import { PaginationControls } from "@/components/PaginationControls";
 import { getPokemons } from "@/apiConnection";
 import { PokemonList } from "@/components/PokemonList";
   
-interface HomeProps {
+type HomeProps = {
   searchParams: { 
     page?: string 
   };
