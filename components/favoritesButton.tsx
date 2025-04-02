@@ -24,6 +24,8 @@ export function FavoritesButton() {
 }
 
 export function DetailPageFavoritesButton({ pokemon }: { pokemon: FavoritePokemon }) {
+    // Initialize favorite state by checking localStorage
+    // Using lazy initialization to avoid SSR issues
     const [isFavorite, setIsFavorite] = useState(() => {
         if (typeof window !== 'undefined') {
             const favorites = JSON.parse(localStorage.getItem('pokemonFavorites') || '[]') as FavoritePokemon[];
@@ -32,12 +34,15 @@ export function DetailPageFavoritesButton({ pokemon }: { pokemon: FavoritePokemo
         return false;
     });
 
+    // Handle adding/removing Pokemon from favorites
     const toggleFavorite = () => {
         const favorites = JSON.parse(localStorage.getItem('pokemonFavorites') || '[]') as FavoritePokemon[];
+        // Filter out if exists, add if doesn't exist
         const newFavorites = isFavorite 
             ? favorites.filter((fav) => fav.id !== pokemon.id)
             : [...favorites, pokemon];
         
+        // Update localStorage and state, then show feedback toast
         localStorage.setItem('pokemonFavorites', JSON.stringify(newFavorites));
         setIsFavorite(!isFavorite);
         
